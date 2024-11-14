@@ -66,7 +66,9 @@ async function fetchReleases(): Promise<Release[]> {
       url: release.html_url,
       prerelease: release.prerelease,
       draft: release.draft,
-      pubishedDate: release.published_at,
+      pubishedDate: release.published_at
+        ? new Date(release.published_at).toLocaleDateString()
+        : '',
       tags,
       totalDownloads: release.assets
         .filter(
@@ -183,6 +185,9 @@ export function Releases({ limit }: { limit?: number }) {
                   <CardTitle className='text-xl mb-2'>
                     {release.title}
                   </CardTitle>
+                  <p className='text-gray-600 dark:text-gray-500'>
+                    {release.pubishedDate}
+                  </p>
                 </div>
                 {release.url && (
                   <Button variant='ghost'>
