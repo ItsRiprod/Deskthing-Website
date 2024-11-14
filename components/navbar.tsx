@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Github } from 'lucide-react';
-import { ThemeSwitch } from './theme-switch';
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Github } from "lucide-react";
+import { ThemeSwitch } from "./theme-switch";
 
 export function Navbar() {
   return (
@@ -28,16 +28,16 @@ export function Navbar() {
               About
             </Link>
             <Link
-              href='#'
-              className='text-muted-foreground hover:text-foreground transition-colors'
-            >
-              Docs
-            </Link>
-            <Link
               href='/apps'
               className='text-muted-foreground hover:text-foreground transition-colors'
             >
               Apps
+            </Link>
+            <Link
+              href='/releases'
+              className='text-muted-foreground hover:text-foreground transition-colors'
+            >
+              Releases
             </Link>
           </div>
         </div>

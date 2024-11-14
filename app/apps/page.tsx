@@ -1,7 +1,7 @@
-import { CommunityApps } from '@/components/community-apps';
-import { Button } from '@/components/ui/button';
-import { Github, Heart } from 'lucide-react';
-import Link from 'next/link';
+import { CommunityApps } from "@/components/community-apps";
+import { Button } from "@/components/ui/button";
+import { Github, Heart } from "lucide-react";
+import Link from "next/link";
 
 export default function About() {
   return (
