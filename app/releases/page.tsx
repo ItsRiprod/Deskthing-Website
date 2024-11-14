@@ -1,5 +1,5 @@
-import { CommunityApps } from "@/components/community-apps";
-import { Releases } from "@/components/releases";
+import { CommunityApps } from '@/components/community-apps';
+import { Releases } from '@/components/releases';
 export default function About() {
   return (
     <section className='container mx-auto px-4 py-24'>

@@ -1,16 +1,16 @@
-"use client";
-import { Badge } from "@/components/ui/badge";
+'use client';
+import { Badge } from '@/components/ui/badge';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { ExternalLink, X } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
-import { Button } from "./ui/button";
+} from '@/components/ui/card';
+import { ExternalLink, X } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
+import { Button } from './ui/button';
 
 type App = {
   title: string;
@@ -23,74 +23,74 @@ type App = {
 // todo: define this elsewhere (or on an API?) so its easier to update
 const apps: App[] = [
   {
-    title: "LyrThing",
-    description: "Display synced lyrics and now-playing information.",
-    author: "espeon",
-    tags: ["music", "api", "beta"],
-    repoUrl: "https://github.com/espeon/lyrthing",
+    title: 'LyrThing',
+    description: 'Display synced lyrics and now-playing information.',
+    author: 'espeon',
+    tags: ['music', 'api', 'beta'],
+    repoUrl: 'https://github.com/espeon/lyrthing',
   },
   {
-    title: "Sports Hub",
+    title: 'Sports Hub',
     description:
-      "The Sports Hub app for DeskThing delivers instant, at-a-glance access to live sports updates, keeping you informed in real time.",
-    author: "dakota-kallas",
-    tags: ["system", "monitoring", "api", "beta"],
-    repoUrl: "https://github.com/dakota-kallas/DeskThing-SportsHub",
+      'The Sports Hub app for DeskThing delivers instant, at-a-glance access to live sports updates, keeping you informed in real time.',
+    author: 'dakota-kallas',
+    tags: ['system', 'monitoring', 'api', 'beta'],
+    repoUrl: 'https://github.com/dakota-kallas/DeskThing-SportsHub',
   },
   {
-    title: "Market Hub",
-    description: "A quick-access, at-a-glance view of selected stocks",
-    author: "dakota-kallas",
-    tags: ["system", "monitoring", "api", "stable"],
-    repoUrl: "https://github.com/dakota-kallas/DeskThing-MarketHub",
+    title: 'Market Hub',
+    description: 'A quick-access, at-a-glance view of selected stocks',
+    author: 'dakota-kallas',
+    tags: ['system', 'monitoring', 'api', 'stable'],
+    repoUrl: 'https://github.com/dakota-kallas/DeskThing-MarketHub',
   },
   {
-    title: "WeatherWave",
+    title: 'WeatherWave',
     description:
-      "Ambient display that shows off your weather, time, and whatever spotify song is playing all at a glance",
-    author: "Dammit Jeff",
-    tags: ["music", "weather", "beta"],
+      'Ambient display that shows off your weather, time, and whatever spotify song is playing all at a glance',
+    author: 'Dammit Jeff',
+    tags: ['music', 'weather', 'beta'],
     repoUrl: null,
   },
   {
-    title: "Global Media Player",
-    description: "Control and get information from local media players",
-    author: "RandomDebugGuy",
-    tags: ["music", "media", "alpha"],
-    repoUrl: "https://github.com/RandomDebugGuy/DeskThing-GMP",
+    title: 'Global Media Player',
+    description: 'Control and get information from local media players',
+    author: 'RandomDebugGuy',
+    tags: ['music', 'media', 'alpha'],
+    repoUrl: 'https://github.com/RandomDebugGuy/DeskThing-GMP',
   },
   {
-    title: "Timer App",
-    description: "Set, manage, and view timers",
-    author: "TylStres",
-    tags: ["notifications", "system", "stable"],
-    repoUrl: "https://github.com/TylStres/DeskThing-Timer",
+    title: 'Timer App',
+    description: 'Set, manage, and view timers',
+    author: 'TylStres',
+    tags: ['notifications', 'system', 'stable'],
+    repoUrl: 'https://github.com/TylStres/DeskThing-Timer',
   },
   {
-    title: "Volume Mixer",
+    title: 'Volume Mixer',
     description:
-      "A volume mixer app that allows you to control volumes of apps separately",
-    author: "jarsa132",
-    tags: ["media", "control", "beta"],
-    repoUrl: "https://github.com/jarsa132/DeskThing-VolCtrl",
+      'A volume mixer app that allows you to control volumes of apps separately',
+    author: 'jarsa132',
+    tags: ['media', 'control', 'beta'],
+    repoUrl: 'https://github.com/jarsa132/DeskThing-VolCtrl',
   },
 ];
 
 const tagColors: Record<string, string> = {
-  stable: "bg-green-500/10 text-green-500 hover:bg-green-500/20",
-  beta: "bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20",
-  alpha: "bg-red-500/10 text-red-500 hover:bg-red-500/20",
-  system: "bg-blue-500/10 text-blue-500 hover:bg-blue-500/20",
-  notifications: "bg-purple-500/10 text-purple-500 hover:bg-purple-500/20",
-  productivity: "bg-pink-500/10 text-pink-500 hover:bg-pink-500/20",
-  spotify: "bg-green-500/10 text-green-500 hover:bg-green-500/20",
-  weather: "bg-cyan-500/10 text-cyan-500 hover:bg-cyan-500/20",
-  media: "bg-indigo-500/10 text-indigo-500 hover:bg-indigo-500/20",
-  monitoring: "bg-orange-500/10 text-orange-500 hover:bg-orange-500/20",
-  timer: "bg-rose-500/10 text-rose-500 hover:bg-rose-500/20",
-  api: "bg-violet-500/10 text-violet-500 hover:bg-violet-500/20",
-  music: "bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500/20",
-  control: "bg-sky-500/10 text-sky-500 hover:bg-sky-500/20",
+  stable: 'bg-green-500/10 text-green-500 hover:bg-green-500/20',
+  beta: 'bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20',
+  alpha: 'bg-red-500/10 text-red-500 hover:bg-red-500/20',
+  system: 'bg-blue-500/10 text-blue-500 hover:bg-blue-500/20',
+  notifications: 'bg-purple-500/10 text-purple-500 hover:bg-purple-500/20',
+  productivity: 'bg-pink-500/10 text-pink-500 hover:bg-pink-500/20',
+  spotify: 'bg-green-500/10 text-green-500 hover:bg-green-500/20',
+  weather: 'bg-cyan-500/10 text-cyan-500 hover:bg-cyan-500/20',
+  media: 'bg-indigo-500/10 text-indigo-500 hover:bg-indigo-500/20',
+  monitoring: 'bg-orange-500/10 text-orange-500 hover:bg-orange-500/20',
+  timer: 'bg-rose-500/10 text-rose-500 hover:bg-rose-500/20',
+  api: 'bg-violet-500/10 text-violet-500 hover:bg-violet-500/20',
+  music: 'bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500/20',
+  control: 'bg-sky-500/10 text-sky-500 hover:bg-sky-500/20',
 };
 
 // Replace the uniqueTags definition with this:
@@ -147,18 +147,18 @@ export function CommunityApps({ limit }: { limit?: number }) {
     : filteredApps;
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-wrap gap-2">
+    <div className='space-y-6'>
+      <div className='flex flex-wrap gap-2'>
         {uniqueTags.map((tag) => (
           <Badge
             key={tag}
-            variant="outline"
+            variant='outline'
             className={`${
-              tagColors[tag] || "bg-gray-500/10 text-gray-500"
+              tagColors[tag] || 'bg-gray-500/10 text-gray-500'
             } border-none cursor-pointer ${
               selectedTags.includes(tag)
-                ? "ring-2 ring-offset-2 ring-offset-background"
-                : ""
+                ? 'ring-2 ring-offset-2 ring-offset-background'
+                : ''
             }`}
             onClick={() => toggleTag(tag)}
           >
@@ -167,52 +167,52 @@ export function CommunityApps({ limit }: { limit?: number }) {
         ))}
         {selectedTags.length > 0 && (
           <Badge
-            variant="outline"
-            className="bg-red-500/10 text-red-500 hover:bg-red-500/20 ring-1 ring-red-500 cursor-pointer"
+            variant='outline'
+            className='bg-red-500/10 text-red-500 hover:bg-red-500/20 ring-1 ring-red-500 cursor-pointer'
             onClick={() => setSelectedTags([])}
           >
-            Clear filters <X className="w-3 h-3 ml-1" />
+            Clear filters <X className='w-3 h-3 ml-1' />
           </Badge>
         )}
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
         {shownApps.map((app) => (
           <Card
             key={app.title}
-            className="dark:bg-black/40 bg-neutral-300/40 border-green-900/20 backdrop-blur-sm hover:border-green-900/40 transition-colors flex flex-col"
+            className='dark:bg-black/40 bg-neutral-300/40 border-green-900/20 backdrop-blur-sm hover:border-green-900/40 transition-colors flex flex-col'
           >
             <CardHeader>
-              <div className="flex justify-between items-start">
+              <div className='flex justify-between items-start'>
                 <div>
-                  <CardTitle className="text-xl mb-2">{app.title}</CardTitle>
-                  <CardDescription className="text-gray-600 dark:text-gray-400 -mt-2">
+                  <CardTitle className='text-xl mb-2'>{app.title}</CardTitle>
+                  <CardDescription className='text-gray-600 dark:text-gray-400 -mt-2'>
                     by {app.author}
                   </CardDescription>
                 </div>
                 {app.repoUrl && (
-                  <Button variant="ghost">
+                  <Button variant='ghost'>
                     <Link
                       href={app.repoUrl}
-                      className="flex items-center gap-1 text-gray-600 dark:text-gray-400 hover:text-white transition-colors"
+                      className='flex items-center gap-1 text-gray-600 dark:text-gray-400 hover:text-white transition-colors'
                     >
-                      <ExternalLink className="w-4 h-4" />
+                      <ExternalLink className='w-4 h-4' />
                     </Link>
                   </Button>
                 )}
               </div>
             </CardHeader>
-            <CardContent className="flex-1 flex flex-col justify-between -mt-4">
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <CardContent className='flex-1 flex flex-col justify-between -mt-4'>
+              <p className='text-gray-600 dark:text-gray-400 mb-4'>
                 {app.description}
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className='flex flex-wrap gap-2'>
                 {app.tags.map((tag) => (
                   <Badge
                     key={tag}
-                    variant="outline"
+                    variant='outline'
                     className={`${
-                      tagColors[tag] || "bg-gray-500/10 text-gray-500"
+                      tagColors[tag] || 'bg-gray-500/10 text-gray-500'
                     } border-none cursor-pointer`}
                     onClick={() => toggleTag(tag)}
                   >
