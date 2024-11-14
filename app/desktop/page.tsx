@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { Suspense, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 export default function RedirectWrapper() {
   return (
@@ -15,11 +15,11 @@ function DesktopRedirect() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    let path = searchParams.get("path");
+    let path = searchParams.get('path');
 
     // Create a new URLSearchParams object
     const newParams = new URLSearchParams(searchParams);
-    newParams.delete("path");
+    newParams.delete('path');
 
     const redirectUrl = `deskthing://${path}?${newParams.toString()}`;
 
@@ -27,22 +27,21 @@ function DesktopRedirect() {
     setTimeout(() => {
       window.location.href = redirectUrl;
       setTimeout(() => {
-        window.location.href = "/";
+        window.location.href = '/';
       }, 4000);
-    }, 250)
+    }, 250);
   }, [searchParams]);
 
   // Render nothing while redirecting
   return (
-    <div className="h-full w-full flex flex-col align-center items-center justify-center">
-      <div className="text-xl">Launching your DeskThing server</div>
+    <div className='h-full w-full flex flex-col align-center items-center justify-center'>
+      <div className='text-xl'>Launching your DeskThing server</div>
 
-      <div className="mt-4">
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
+      <div className='mt-4'>
+        <a href='/' className='text-blue-500 hover:text-blue-700 underline'>
           Click here to go back manually
         </a>
       </div>
-
     </div>
   );
 }
