@@ -43,12 +43,19 @@ export default function Home() {
               </p>
               <div className='flex gap-4'>
                 <Button>
-                  Get Started
-                  <Rocket className='ml-2 h-4 w-4' />
+                  <Link href='/releases' className='flex items-center gap-1'>
+                    Get Started
+                    <Rocket className='ml-2 h-4 w-4' />
+                  </Link>
                 </Button>
                 <Button variant='outline'>
-                  Documentation
-                  <Zap className='ml-2 h-4 w-4' />
+                  <Link
+                    href='https://github.com/ItsRiprod/DeskThing'
+                    className='flex items-center gap-1'
+                  >
+                    Documentation
+                    <Zap className='ml-2 h-4 w-4' />
+                  </Link>
                 </Button>
               </div>
             </div>
