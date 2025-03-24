@@ -155,7 +155,6 @@ export default function WhenSection() {
   return (
     <div className="md:p-8 p-2 bg-neutral-900 rounded-lg h-full">
       <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-        <Calendar className="w-8 h-8" />
         When did it all start?
       </h2>
       <div className="space-y-4">
@@ -167,7 +166,7 @@ export default function WhenSection() {
 
         <Timeline />
 
-        <div className="mt-8 p-4 bg-neutral-800 rounded-lg">
+        <div className="mt-8 p-4 rounded-lg">
           <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
             <ArrowRight className="w-5 h-5" />
             Current Release
@@ -182,7 +181,7 @@ export default function WhenSection() {
           </ul>
         </div>
 
-        <div className="mt-6 p-4 bg-neutral-800 rounded-lg">
+        <div className="mt-6 p-4 rounded-lg">
           <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
             <ArrowRight className="w-5 h-5" />
             Looking Forward

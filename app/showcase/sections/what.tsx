@@ -7,46 +7,20 @@ import {
   Puzzle, 
   Zap, 
   Globe, 
-  ShieldCheck 
+  ShieldCheck, 
+  AppWindow
 } from 'lucide-react';
-
-interface FeatureCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  iconColor: string;
-}
+import { FeatureCardB, FeatureCardC } from '../components/FeatureCard'
+import { SectionContainer } from '../components/SectionContainer'
 
 interface ChecklistItemProps {
   text: string;
   label: string;
 }
 
-interface InfoCardProps {
-  icon: React.ReactNode;
-  iconColor: string;
-  title: string;
-  description: string;
-  borderColor: string;
-}
-
 interface AppCardProps {
   title: string;
   description: string;
-}
-
-function FeatureCard({ icon, title, description, iconColor }: FeatureCardProps) {
-  return (
-    <div className="bg-neutral-800 p-5 rounded-lg flex flex-col h-full border-2 border-transparent transition-all hover:border-2 hover:border-green-500 hover:shadow-[0_0_15px_rgba(34,197,94,0.3)]">
-      <div className="flex items-center mb-3">
-        <div className={`${iconColor} mr-3`}>
-          {icon}
-        </div>
-        <h3 className="text-xl font-semibold">{title}</h3>
-      </div>
-      <p>{description}</p>
-    </div>
-  );
 }
 
 function ChecklistItem({ text, label }: ChecklistItemProps) {
@@ -56,18 +30,6 @@ function ChecklistItem({ text, label }: ChecklistItemProps) {
         <span className="text-xs font-bold">✓</span>
       </div>
       <p><span className="font-medium">{label}</span> {text}</p>
-    </div>
-  );
-}
-
-function InfoCard({ icon, iconColor, title, description, borderColor }: InfoCardProps) {
-  return (
-    <div className={`bg-neutral-800 p-5 rounded-lg border-t-4 ${borderColor} transition-all hover:border-2 hover:${borderColor} hover:shadow-[0_0_15px_rgba(34,197,94,0.3)]`}>
-      <div className="flex justify-center mb-4">
-        <div className={iconColor}>{icon}</div>
-      </div>
-      <h3 className="text-lg font-semibold text-center mb-2">{title}</h3>
-      <p className="text-center text-sm">{description}</p>
     </div>
   );
 }
@@ -112,7 +74,7 @@ function FeaturesGrid() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
       {features.map((feature, index) => (
-        <FeatureCard
+        <FeatureCardB
           key={index}
           icon={feature.icon}
           title={feature.title}
@@ -172,7 +134,7 @@ export default function WhatSection() {
   return (
     <div className="p-2 md:p-8 bg-neutral-900 rounded-lg h-full">
       <h2 className="text-3xl font-bold mb-6">What is DeskThing?</h2>
-      <div className="space-y-6">
+      <div className="space-y-8">
         <div className="flex flex-col md:flex-row gap-6 items-center">
           <div className="md:w-2/3">
             <p className="text-lg leading-relaxed">
@@ -205,21 +167,22 @@ export default function WhatSection() {
         
         <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
           {infoCards.map((card, index) => (
-            <InfoCard key={index} {...card} />
+            <FeatureCardC key={index} {...card} />
           ))}
         </div>
         
-        <div className="mt-8 bg-neutral-700 p-6 rounded-lg border-l-4 border-green-500">
-          <h3 className="text-xl font-semibold mb-3">Core Applications</h3>
-          <p className="mb-4">
-            DeskThing comes with several official applications to get you started, with more being added regularly:
-          </p>
+        <SectionContainer
+          title="Core Applications"
+          description="DeskThing comes with several official applications to get you started, with more being added regularly:"
+          icon={<AppWindow className="w-5 h-5" />}
+          iconBgColor="bg-green-500"
+        >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {coreApps.map((app, index) => (
               <AppCard key={index} {...app} />
             ))}
           </div>
-        </div>
+        </SectionContainer>
         
         <div className="mt-8 p-6 bg-neutral-800 rounded-lg">
           <div className="flex flex-col md:flex-row items-center gap-6">

@@ -11,8 +11,12 @@ import {
   Cloud, 
   Code, 
   Bot, 
-  Lightbulb 
+  Lightbulb, 
+  MessageSquare,
+  Box,
+  GitPullRequest
 } from 'lucide-react';
+import { FeatureCardB } from '../components/FeatureCard'
 
 interface PhilosophyCardProps {
   icon: React.ReactNode;
@@ -37,32 +41,14 @@ interface TimelineItemProps {
   borderColor: string;
 }
 
-interface CommunityCardProps {
-  title: string;
-  description: string;
-  textColor: string;
-}
-
-function PhilosophyCard({ icon, title, description, iconColor }: PhilosophyCardProps) {
-  return (
-    <div className="bg-neutral-700 p-4 rounded-lg">
-      <div className="flex items-center mb-2">
-        <div className={`${iconColor} mr-2`}>{icon}</div>
-        <h4 className="font-semibold">{title}</h4>
-      </div>
-      <p className="text-sm">{description}</p>
-    </div>
-  );
-}
-
 function RoadmapItem({ icon, title, description, iconColor }: RoadmapItemProps) {
   return (
-    <div className="bg-neutral-800 p-3 rounded-lg flex">
+    <div className="p-3 rounded-lg flex">
       <div className="mr-3 mt-1 flex-shrink-0">
         <div className={iconColor}>{icon}</div>
       </div>
       <div>
-        <h4 className="font-medium">{title}</h4>
+        <p className="font-medium  text-xl">{title}</p>
         <p className="text-sm text-gray-300">{description}</p>
       </div>
     </div>
@@ -75,20 +61,11 @@ function TimelineItem({ icon, title, status, statusColor, children, borderColor 
       <div className={`absolute -left-3 top-0 w-6 h-6 rounded-full ${borderColor.replace('border', 'bg')} flex items-center justify-center`}>
         {icon}
       </div>
-      <h3 className="text-xl font-semibold mb-3 flex items-center">
+      <h3 className="text-3xl font-semibold mb-3 flex items-center">
         {title}
         <span className={`ml-3 text-sm ${statusColor} py-1 px-2 rounded-full`}>{status}</span>
       </h3>
       {children}
-    </div>
-  );
-}
-
-function CommunityCard({ title, description, textColor }: CommunityCardProps) {
-  return (
-    <div className="bg-neutral-700 p-4 rounded-lg">
-      <h4 className={`font-medium ${textColor} mb-2`}>{title}</h4>
-      <p className="text-sm">{description}</p>
     </div>
   );
 }
@@ -198,22 +175,27 @@ export default function WhereSection() {
 
   const communityItems = [
     {
+      icon: <MessageSquare size={18} />,
       title: "Feature Requests",
       description: "Submit ideas and vote on proposed features through GitHub issues or the community Discord server.",
-      textColor: "text-green-400"
+      textColor: "text-green-400",
+      iconColor: "text-green-400"
     },
     {
+      icon: <GitPullRequest size={18} />,
       title: "Code Contributions",
       description: "Contribute directly to the codebase through pull requests for features, bug fixes, or documentation.",
-      textColor: "text-blue-400"
+      textColor: "text-blue-400",
+      iconColor: "text-blue-400"
     },
     {
+      icon: <Box size={18} />,
       title: "App Development",
       description: "Create and share your own apps to expand the ecosystem and inspire new use cases for the platform.",
-      textColor: "text-purple-400"
+      textColor: "text-purple-400",
+      iconColor: "text-purple-400"
     }
   ];
-
   return (
     <div className="md:p-8 p-2 bg-neutral-900 rounded-lg h-full">
       <h2 className="text-3xl font-bold mb-6">Where is it going?</h2>
@@ -233,17 +215,17 @@ export default function WhereSection() {
           </div>
         </div>
         
-        <div className="mt-8 bg-neutral-800 p-6 rounded-lg">
+        <div className="mt-8 p-6 rounded-lg">
           <div className="flex items-center mb-4">
             <Zap className="text-green-400 mr-3" size={28} />
             <h3 className="text-2xl font-semibold">Development Philosophy</h3>
           </div>
-          <p className="mb-4">
+          <p className="mb-6">
             DeskThing development follows these core principles that guide all future enhancements:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
             {philosophyItems.map((item, index) => (
-              <PhilosophyCard key={index} {...item} />
+              <FeatureCardB key={index} {...item} />
             ))}
           </div>
         </div>
@@ -304,14 +286,14 @@ export default function WhereSection() {
           </TimelineItem>
         </div>
         
-        <div className="mt-10 bg-neutral-800 p-6 rounded-lg">
+        <div className="mt-10  p-6 rounded-lg">
           <h3 className="text-xl font-semibold mb-4">Community Involvement</h3>
           <p className="mb-4">
             The future of DeskThing is shaped by its community. There are several ways to influence the project's direction:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {communityItems.map((item, index) => (
-              <CommunityCard key={index} {...item} />
+              <FeatureCardB key={index} {...item} />
             ))}
           </div>
         </div>
