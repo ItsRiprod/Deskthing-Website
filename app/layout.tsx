@@ -17,7 +17,10 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
     return (
       <html className={`${GeistSans.variable} ${GeistMono.variable}`} lang="en">
-        <link rel="icon" href="imgs/AppIcon.png" />
+        <head>
+          <meta name="google-adsense-account" content="ca-pub-8018324056802093" />
+          <link rel="icon" href="imgs/AppIcon.png" />
+        </head>
         <body className="bg-neutral-950 text-neutral-50">
           <Navbar />
           {children}

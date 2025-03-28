@@ -1,13 +1,16 @@
 // Repos to pull for Community Apps
 const repos: string[] = [
-  "TylStres/DeskThing-Timer",
-  "dakota-kallas/DeskThing-MarketHub",
   "RandomDebugGuy/DeskThing-GMP",
-  "Jarsa132/deskthing-volctrl",
-  "espeon/lyrthing",
   "dakota-kallas/DeskThing-GitHub",
+  "grahamplace/pomodoro-thing",
   "dakota-kallas/DeskThing-SportsHub",
+  "dakota-kallas/DeskThing-MarketHub",
+  "ankziety/DeskThingDiscord",
+  "espeon/lyrthing",
   "nwo122383/sonos-webapp",
+  "Jarsa132/deskthing-volctrl",
+  "ankziety/DeskThingDiscord",
+  "TylStres/DeskThing-Timer",
 ];
 
 interface ReleaseData {

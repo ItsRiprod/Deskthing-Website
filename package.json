@@ -1,6 +1,6 @@
 {
   "name": "deskthing-website",
-  "homepage": "https://nlucaccioni.github.io/Deskthing-Website",
+  "homepage": "https://deskthing.app",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

@@ -69,3 +69,21 @@ p {
 ol {
     list-style: decimal;
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  ::-webkit-scrollbar-track {
+      background: '#0a0a0a';
+      border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: rgb(82 82 91);
+      border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+  }
