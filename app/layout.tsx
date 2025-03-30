@@ -7,10 +7,11 @@ import React, { JSX, ReactNode } from "react";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-export const metadata: { title: string; description: string } = {
+export const metadata: { title: string; description: string; keywords: string } = {
   title: "DeskThing",
   description: "Take back your CarThing.",
-};
+  keywords: "CarThing, DeskThing, Laptop, Desktop, App Launcher, Open Source, Spotify"
+}
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -21,7 +22,7 @@ export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
     <html className={`${GeistSans.variable} ${GeistMono.variable}`} lang="en">
       <head>
         <meta name="google-adsense-account" content="ca-pub-8018324056802093" />
-        <link rel="icon" href="imgs/AppIcon.png" />
+        <link rel="icon" href="/imgs/AppIcon.png" />
       </head>
       <body className="bg-neutral-950 text-neutral-50">
         <Navbar />

@@ -1,0 +1,29 @@
+# robots.txt for DeskThing Website
+
+User-agent: *
+Allow: /
+
+# Main pages
+Allow: /about
+Allow: /apps
+Allow: /releases
+Allow: /supporters
+
+# Showcase section and its subpages
+Allow: /showcase
+Allow: /showcase/how
+Allow: /showcase/what
+Allow: /showcase/when
+Allow: /showcase/where
+Allow: /showcase/who
+Allow: /showcase/why
+
+# Disallow utility directories
+Disallow: /hooks/
+Disallow: /showcase/components/
+
+# Allow static assets
+Allow: /showcase/imgs/
+
+# Sitemap location (if you have one)
+Sitemap: https://deskthing.app/sitemap.xml

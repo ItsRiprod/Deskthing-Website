@@ -22,7 +22,10 @@ interface InfoCardProps {
 }
 
 export function InfoCard({ title, description, icon }: InfoCardProps) {
-  const [ref, isInView] = useInView<HTMLDivElement>();
+  const [ref, isInView] = useInView<HTMLDivElement>({
+    threshold: 0.2,
+    triggerOnce: true
+  });
 
   return (
     <div
