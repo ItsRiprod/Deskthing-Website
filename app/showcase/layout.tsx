@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { ArrowDown } from "lucide-react";
 import { usePathname } from "next/navigation";
-import Link from "next/link"
+import Link from "next/link";
 
 type SectionId =
   | "about"
@@ -52,18 +52,19 @@ export default function ShowcaseLayout({
     return () => clearInterval(interval);
   }, []);
 
-
   useEffect(() => {
-    setVisibleNavbar(false)
-  }, [pathname])
-
+    if (pathname !== "/showcase") {
+      setVisibleNavbar(false);
+      window.scrollTo(0, 0);
+    }
+  }, [pathname]);
 
   const handleCollapseClick = () => {
     setVisibleNavbar((prev) => !prev);
   };
 
   return (
-    <div className="h-svh flex flex-col md:flex-row pt-nav">
+    <div className="min-h-svh flex flex-col md:flex-row pt-nav">
       {/* Left sidebar - fixed navigation */}
       <aside
         className={`${
@@ -119,11 +120,14 @@ export default function ShowcaseLayout({
 
       {/* Right content area - independently scrollable */}
       <div
-        className="w-full lg:w-2/3 lg:ml-[33.333%] h-[calc(100vh-6rem)] overflow-hidden flex-grow"
+        className="w-full lg:w-2/3 lg:ml-[33.333%] flex-grow"
         aria-live="polite"
       >
-        <div className="h-full overflow-y-auto md:px-6 md:px-12 py-8 md:py-12">
-          <div key={pathname} className="min-h-[50vh] animate-fadeIn duration-300">
+        <div className="h-full md:px-6 md:px-12 py-8 md:py-12">
+          <div
+            key={pathname}
+            className="min-h-[50vh] animate-fadeIn duration-300"
+          >
             {children}
           </div>
         </div>

@@ -282,7 +282,7 @@ export const ClientSection: FC = () => {
         
         <div className="flex justify-center mt-8">
           <a 
-            href="https://github.com/ItsRiprod/DeskThing/tree/main/DeskThingClient" 
+            href="https://github.com/ItsRiprod/DeskThing-Client/tree/main/" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="inline-flex items-center px-6 py-3 text-base font-medium bg-neutral-800/50 border border-neutral-700 rounded-lg hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:border-blue-500 transition-all duration-300"
