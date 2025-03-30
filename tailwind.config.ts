@@ -14,6 +14,7 @@ const config: Config = {
     },
     spacing: {
       "0": "0px",
+      "0.5": "2.5px",
       "1": "5px",
       "2": "10px",
       "3": "15px",
@@ -30,8 +31,8 @@ const config: Config = {
     },
     extend: {
       scale: {
-        '101': '1.01',
-        '102': '1.02',
+        "101": "1.01",
+        "102": "1.02",
       },
       colors: {
         neutral: {
@@ -56,13 +57,26 @@ const config: Config = {
         fadeOut: {
           from: { opacity: "1" },
           to: { opacity: "0" },
-        },      },
+        },
+        dropIn: {
+          from: {
+            opacity: "0",
+            transform: "translateY(-10px)",
+          },
+          to: {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+      },
       animation: {
         "expand-down": "expand-down 0.3s ease-out",
         fadeIn: "fadeIn 0.3s ease-in-out",
         fadeOut: "fadeOut 0.3s ease-in-out",
+        dropIn: "dropIn 0.3s ease-in-out",
       },
     },
   },
 };
+
 export default config;

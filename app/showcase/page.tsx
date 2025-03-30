@@ -42,6 +42,11 @@ export default function ShowcasePage() {
   const contentRef = useRef<HTMLDivElement>(null);
   const [visibleNavbar, setVisibleNavbar] = useState(true);
 
+  const handleGoToNextSection = (id: SectionId) => {
+    setActiveSection(id);
+    setVisibleNavbar(false);
+  };
+
   // Animation to reveal nav items one by one
   useEffect(() => {
     const interval = setInterval(() => {
@@ -114,7 +119,9 @@ export default function ShowcasePage() {
       {/* Left sidebar - fixed navigation */}
       <aside
         className={`${
-          visibleNavbar ? "h-[calc(100vh-6rem)] py-8" : "h-0 overflow-hidden py-0"
+          visibleNavbar
+            ? "h-[calc(100vh-6rem)] py-8"
+            : "h-0 overflow-hidden py-0"
         } lg:py-8 px-6 z-10 md:mb-nav fixed border-b-4 border-neutral-900 lg:border-none bg-neutral-950 w-screen transition-[height;padding] duration-300 ease-in-out lg:fixed top-nav md:bottom-nav md:left-0 lg:w-1/3 lg:max-w-md lg:h-[calc(100vh-12.5rem)] overflow-y-auto flex items-center`}
       >
         <nav className="w-full md:w-auto h-full">
@@ -153,7 +160,7 @@ export default function ShowcasePage() {
       </aside>
       <button
         onClick={handleCollapseClick}
-        className="lg:hidden border-2 border-neutral-600 bg-neutral-900 fixed top-nav right-0 p-3 m-2 rounded-full z-20 transition-all duration-300 border-transparent hover:border-2 hover:border-green-500 hover:shadow-[0_0_15px_rgba(34,197,94,0.3)]"
+        className="lg:hidden border-2 bg-neutral-900 fixed top-nav right-0 p-3 m-2 rounded-full z-20 transition-all duration-300 border-green-500 hover:border-2 hover:shadow-[0_0_15px_rgba(34,197,94,0.3)]"
       >
         <ArrowDown
           className={`${

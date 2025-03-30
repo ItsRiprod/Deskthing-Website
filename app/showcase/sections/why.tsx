@@ -10,15 +10,15 @@ import {
   MessageSquareQuote,
   Lightbulb,
 } from "lucide-react";
-import { StatCard } from "../components/StatCard";
+import { InfoCard, StatCard } from "../components/InfoCards";
 import { TestimonialCard } from "../components/TestimonialCard";
 import { WhyFeatureCard } from "../components/WhyFeatureCard";
 import { QuoteCard } from "../components/QuoteCard";
-import { AppFeatureCard } from "../components/AppFeatureCard";
+import { SectionContainer } from "../components/SectionContainer";
 
 export default function WhySection() {
   return (
-    <div className="md:p-8 p-2 bg-neutral-900 rounded-lg h-full">
+    <div className="md:p-8 p-2 rounded-lg h-full">
       <h2 className="text-3xl font-bold mb-6">Why should you use it?</h2>
       <div className="space-y-8">
         <div className="flex flex-col md:flex-row gap-6 items-center">
@@ -74,13 +74,16 @@ export default function WhySection() {
             screen space.
           </p>
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <StatCard value="30%" label="Reduction in context switching" />
             <StatCard
-              value="100%"
+              value={<span className="text-blue-400">30%</span>}
+              label="Reduction in context switching"
+            />
+            <StatCard
+              value={<span className="text-blue-400">100%</span>}
               label="Main screen dedicated to primary tasks"
             />
             <StatCard
-              value="24/7"
+              value={<span className="text-blue-400">24/7 access</span>}
               label="Continuous access to important information"
             />
           </div>
@@ -101,29 +104,16 @@ export default function WhySection() {
             empowers both users and developers.
           </p>
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-neutral-700 p-3 rounded-lg flex">
-              <div className="mr-3 mt-1">
-                <Code size={18} className="text-purple-400" />
-              </div>
-              <div>
-                <h4 className="font-medium">Comprehensive SDK</h4>
-                <p className="text-sm">
-                  Develop apps using familiar web technologies like React and
-                  Node.js
-                </p>
-              </div>
-            </div>
-            <div className="bg-neutral-700 p-3 rounded-lg flex">
-              <div className="mr-3 mt-1">
-                <Globe size={18} className="text-purple-400" />
-              </div>
-              <div>
-                <h4 className="font-medium">Community Support</h4>
-                <p className="text-sm">
-                  Active Discord server and GitHub community for collaboration
-                </p>
-              </div>
-            </div>
+            <InfoCard
+              icon={<Code size={32} className="text-purple-400" />}
+              title={<span className="text-purple-400">Comprehensive SDK</span>}
+              description="Develop apps using familiar web technologies like React and Node.js"
+            />
+            <InfoCard
+              icon={<Globe size={32} className="text-purple-400" />}
+              title={<span className="text-purple-400">Community Support</span>}
+              description="Active Discord server and Github community for collaboration"
+            />
           </div>
         </WhyFeatureCard>
 
@@ -137,20 +127,24 @@ export default function WhySection() {
             smooth performance even on older hardware, making it accessible to a
             wide range of devices that might otherwise be considered obsolete.
           </p>
-          <div className="mt-4 bg-neutral-700 p-3 rounded-lg">
-            <div className="grid grid-cols-3 gap-2">
-              <div className="text-center">
-                <h4 className="text-yellow-400 font-medium">{`<10%`}</h4>
-                <p className="text-xs">CPU usage on client devices</p>
-              </div>
-              <div className="text-center">
-                <h4 className="text-yellow-400 font-medium">{`<100MB`}</h4>
-                <p className="text-xs">RAM usage when idle</p>
-              </div>
-              <div className="text-center">
-                <h4 className="text-yellow-400 font-medium">7+</h4>
-                <p className="text-xs">Simultaneous device connections</p>
-              </div>
+          <div className="mt-4 px-3 rounded-lg">
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <StatCard
+                value={
+                  <span className="text-yellow-400 font-medium">{`<10%`}</span>
+                }
+                label="CPU usage on client devices"
+              />
+              <StatCard
+                value={
+                  <span className="text-yellow-400 font-medium">{`<100MB`}</span>
+                }
+                label="RAM usage when idle"
+              />
+              <StatCard
+                value={<span className="text-yellow-400 font-medium">7+</span>}
+                label="Simultaneous device connections"
+              />
             </div>
           </div>
         </WhyFeatureCard>
@@ -169,18 +163,20 @@ export default function WhySection() {
             consistent experience regardless of your technology ecosystem.
           </p>
           <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">
-            <div className="bg-neutral-700 p-2 rounded-lg text-center">
-              <p className="text-sm font-medium text-teal-400">Windows</p>
-            </div>
-            <div className="bg-neutral-700 p-2 rounded-lg text-center">
-              <p className="text-sm font-medium text-teal-400">macOS</p>
-            </div>
-            <div className="bg-neutral-700 p-2 rounded-lg text-center">
-              <p className="text-sm font-medium text-teal-400">Linux</p>
-            </div>
-            <div className="bg-neutral-700 p-2 rounded-lg text-center">
-              <p className="text-sm font-medium text-teal-400">Any Browser</p>
-            </div>
+            <StatCard
+              value={<span className="font-medium text-teal-400">Windows</span>}
+            />
+            <StatCard
+              value={<span className="font-medium text-teal-400">macOS</span>}
+            />
+            <StatCard
+              value={<span className="font-medium text-teal-400">Linux</span>}
+            />
+            <StatCard
+              value={
+                <span className="font-medium text-teal-400">Any Browser</span>
+              }
+            />{" "}
           </div>
         </WhyFeatureCard>
 
@@ -195,28 +191,42 @@ export default function WhySection() {
             specific needs and workflow.
           </p>
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-            <AppFeatureCard
-              title="System Monitoring"
+            <InfoCard
+              title={
+                <span className="font-medium text-pink-400">
+                  System Monitoring
+                </span>
+              }
               description="Track CPU, memory, and network usage"
             />
-            <AppFeatureCard
-              title="Media Controls"
+            <InfoCard
+              title={
+                <span className="font-medium text-pink-400">
+                  Media Controls
+                </span>
+              }
               description="Control music and video playback"
             />
-            <AppFeatureCard
-              title="Smart Home"
+            <InfoCard
+              title={
+                <span className="font-medium text-pink-400">Smart Home</span>
+              }
               description="Manage connected devices and scenes"
             />
-            <AppFeatureCard
-              title="Weather"
+            <InfoCard
+              title={<span className="font-medium text-pink-400">Weather</span>}
               description="Real-time forecasts and conditions"
             />
-            <AppFeatureCard
-              title="Calendar"
+            <InfoCard
+              title={
+                <span className="font-medium text-pink-400">Calendar</span>
+              }
               description="View upcoming events and reminders"
             />
-            <AppFeatureCard
-              title="And More..."
+            <InfoCard
+              title={
+                <span className="font-medium text-pink-400">And More...</span>
+              }
               description="Expanding library of applications"
             />
           </div>
@@ -253,16 +263,18 @@ export default function WhySection() {
             />
           </div>
         </div>
-        <div className="p-6 bg-neutral-700 rounded-lg border-l-4 border-green-500 mt-8">
-          <h3 className="text-xl font-semibold mb-3">The DeskThing Vision</h3>
-          <p className="text-gray-300">
-            DeskThing is more than just an application—it's a platform that
-            fosters responsibility and creativity while enhancing productivity.
+        <SectionContainer 
+          title="The DeskThing Vision" 
+          icon={<Lightbulb className="w-5 h-5 text-green-500" />}
+          description="DeskThing is more than just an application—it's a platform that fosters responsibility and creativity while enhancing productivity."
+          className="border-l-green-500 border-l-4"
+        >
+          <p className="text-zinc-100">
             By transforming unused devices into powerful tools, DeskThing not
             only reduces electronic waste but also empowers users and developers
             to create innovative solutions tailored to their specific needs.
           </p>
-          <p className="text-gray-300 mt-3">
+          <p className="text-zinc-100 mt-3">
             Whether you're looking to maximize the potential of your old
             devices, build and deploy apps with ease, or simply find ways to
             streamline your digital life, DeskThing offers a flexible,
@@ -271,34 +283,22 @@ export default function WhySection() {
             continue to evolve based on community needs and contributions.
           </p>
           <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-neutral-800 p-3 rounded-lg">
-              <h4 className="font-medium text-green-400 mb-1">
-                Environmental Impact
-              </h4>
-              <p className="text-sm">
-                By extending the useful life of devices, DeskThing helps reduce
-                the 53.6 million metric tons of e-waste generated globally each
-                year.
-              </p>
-            </div>
-            <div className="bg-neutral-800 p-3 rounded-lg">
-              <h4 className="font-medium text-blue-400 mb-1">Accessibility</h4>
-              <p className="text-sm">
-                DeskThing's low resource requirements make it accessible to
-                users with older hardware or limited technical resources.
-              </p>
-            </div>
-            <div className="bg-neutral-800 p-3 rounded-lg">
-              <h4 className="font-medium text-purple-400 mb-1">
-                Community Growth
-              </h4>
-              <p className="text-sm">
-                The expanding ecosystem of apps and developers creates a
-                positive feedback loop of innovation and improvement.
-              </p>
-            </div>
+            <InfoCard
+              title={
+                <span className="text-green-400">Environmental Impact</span>
+              }
+              description="By extending the useful life of devices, DeskThing helps reduce the 53.6 million metric tons of e-waste generated globally each year."
+            />
+            <InfoCard
+              title={<span className="text-blue-400">Accessibility</span>}
+              description="DeskThing's low resource requirements make it accessible to users with older hardware or limited technical resources."
+            />
+            <InfoCard
+              title={<span className="text-purple-400">Community Growth</span>}
+              description="The expanding ecosystem of apps and developers creates a positive feedback loop of innovation and improvement."
+            />
           </div>
-          <p className="text-gray-300 mt-4">
+          <p className="text-gray-200 mt-4">
             As Christians are called to be good stewards of what we're given,
             DeskThing embodies this principle by helping users make the most of
             existing technology rather than contributing to a culture of
@@ -306,9 +306,8 @@ export default function WhySection() {
             also promotes a mindset of resourcefulness and creativity that can
             extend beyond technology into other areas of life.
           </p>
-        </div>
-
-        <div className="bg-neutral-800 p-5 rounded-lg mt-6">
+        </SectionContainer>
+        <div className="mt-8 bg-neutral-900 border-neutral-700 p-6 rounded-lg border border-l-4 border-l-green-500">
           <div className="flex flex-col md:flex-row items-center gap-6">
             <div className="md:w-1/4 flex justify-center">
               <Lightbulb size={64} className="text-yellow-400" />

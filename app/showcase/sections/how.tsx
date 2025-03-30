@@ -14,13 +14,44 @@ import {
   Code2,
   Package,
   Share2,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
-import { FeatureCardA, FeatureCardC } from "../components/FeatureCard";
-import { SectionContainer } from "../components/SectionContainer"
+import { SectionContainer } from "../components/SectionContainer";
+import { FeatureCard, InfoCard, InfoComponent } from "../components/InfoCards";
+import { CodeBox, CodeComponent } from "../components/CodeComponent";
+import { Suspense, useCallback, useMemo, useState, useTransition } from "react";
+import { IconGithub } from "../../../components/assets/icons";
+import { HowServerSection } from "../components/how/ServerSection";
+import { ClientSection } from "../components/how/ClientSection";
 
 export default function HowSection() {
+  const [openSections, setOpenSections] = useState<Set<string>>(new Set());
+
+  const [isPending, startTransition] = useTransition();
+
+  // Then in your toggle function
+  const toggleSection = (sectionId: string): void => {
+    startTransition(() => {
+      setOpenSections(prev => {
+        const newOpenSections = new Set(prev);
+        if (newOpenSections.has(sectionId)) {
+          newOpenSections.delete(sectionId);
+        } else {
+          newOpenSections.add(sectionId);
+        }
+        return newOpenSections;
+      });
+    });
+  };
+  // Check if a section is open
+  const isSectionOpen = (sectionId: string) => openSections.has(sectionId);
+
+  const serverSection = useMemo(() => <HowServerSection />, []);
+  const clientSection = useMemo(() => <ClientSection />, []);
+
   return (
-    <div className="md:p-8 p-2 bg-neutral-900 rounded-lg h-full">
+    <div className="md:p-8 p-2 rounded-lg h-full">
       <h2 className="text-3xl font-bold mb-6">How does it work?</h2>
       <div className="space-y-8">
         <div className="flex flex-col md:flex-row gap-6 items-center">
@@ -46,30 +77,55 @@ export default function HowSection() {
             description="The DeskThing server runs on your computer, serving as the central hub for all connected devices and applications."
             icon={<Server className="w-5 h-5" />}
             iconBgColor="bg-green-500"
+            index={0}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-              <FeatureCardA
-                title="Architecture"
-                titleColor="text-green-400"
+              <InfoCard
+                title={<span className="text-green-400">Architecture</span>}
                 description="Built with Electron-Vite, React, TailwindCSS, NodeJS, and ExpressJS, the server implements a listener store architecture using dependency injection. This pattern allows for efficient state management and real-time updates across the entire system."
               />
-              <FeatureCardA
-                title="App Management"
-                titleColor="text-green-400"
+              <InfoCard
+                title={<span className="text-green-400">App Management</span>}
                 description="Each app runs on its own thread, ensuring stability and isolation. The server can download both official and community apps directly from the internet, handling installation, updates, and dependency management automatically."
               />
-              <FeatureCardA
-                title="Client Management"
-                titleColor="text-green-400"
+              <InfoCard
+                title={
+                  <span className="text-green-400">Client Management</span>
+                }
                 description="The server tracks and manages all connected client devices, handling authentication, session management, and data synchronization. It can support multiple simultaneous connections, each with its own state and app configuration."
               />
-              <FeatureCardA
-                title="Communication"
-                titleColor="text-green-400"
+              <InfoCard
+                title={<span className="text-green-400">Communication</span>}
                 description="WebSockets provide real-time bidirectional communication between the server and clients, enabling instant updates and responsive interactions regardless of the number of connected devices."
               />
             </div>
+
+            {/* Add expandable section button */}
+            <button
+              onClick={() => toggleSection("server")}
+              className="mt-4 flex items-center justify-center w-full py-2 px-4 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition-all duration-300 group"
+            >
+              <span className="mr-2 text-green-400 font-medium">
+                {isSectionOpen("server")
+                  ? "Hide Technical Details"
+                  : "Show Technical Details"}
+              </span>
+              <ChevronDown
+                className={`w-5 h-5 ${
+                  isSectionOpen("server")
+                    ? "-rotate-180 group-hover:translate-y-[-2px]"
+                    : "group-hover:translate-y-[2px]"
+                } text-green-400 transition-transform duration-300`}
+              />
+            </button>
           </SectionContainer>
+
+          {/* Server details section that expands/collapses */}
+          {isSectionOpen("server") && (
+            <div className="overflow-x-hidden transition-all duration-500 opacity-100 animate-dropIn">
+              {serverSection}
+            </div>
+          )}
 
           <SectionContainer
             title="Client Devices"
@@ -78,28 +134,56 @@ export default function HowSection() {
             iconBgColor="bg-blue-500"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-              <FeatureCardA
-                title="Universal Compatibility"
-                titleColor="text-blue-400"
+              <InfoCard
+                title={
+                  <span className="text-blue-400">Universal Compatibility</span>
+                }
                 description="Works on phones, tablets, computers, Car Thing devices, smart fridges, or anything that can run a browser and connect via cable or LAN to the desktop. No app installation required—just navigate to the provided URL."
               />
-              <FeatureCardA
-                title="Interactive Interface"
-                titleColor="text-blue-400"
+              <InfoCard
+                title={
+                  <span className="text-blue-400">Interactive Interface</span>
+                }
                 description="The client renders app UIs and allows users to navigate between apps, trigger actions, modify settings, and interact with content—all from the connected device. The interface adapts to different screen sizes and orientations automatically."
               />
-              <FeatureCardA
-                title="Reactive Architecture"
-                titleColor="text-blue-400"
+              <InfoCard
+                title={
+                  <span className="text-blue-400">Reactive Architecture</span>
+                }
                 description="Built with Zustand for state management, along with Vite, React, and TailwindCSS, the client provides a fully reactive experience. UI updates happen instantly in response to state changes, without requiring page refreshes."
               />
-              <FeatureCardA
-                title="Offline Capabilities"
-                titleColor="text-blue-400"
+              <InfoCard
+                title={
+                  <span className="text-blue-400">Offline Capabilities</span>
+                }
                 description="The client can cache certain app data and continue displaying information even during brief connection interruptions, ensuring a smooth user experience in less-than-ideal network conditions."
               />
             </div>
+
+            <button
+              onClick={() => toggleSection("client")}
+              className="mt-4 flex items-center justify-center w-full py-2 px-4 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition-all duration-300 group"
+            >
+              <span className="mr-2 text-blue-400 font-medium">
+                {isSectionOpen("client")
+                  ? "Hide Technical Details"
+                  : "Show Technical Details"}
+              </span>
+              <ChevronDown
+                className={`w-5 h-5 ${
+                  isSectionOpen("client")
+                    ? "-rotate-180 group-hover:translate-y-[-2px]"
+                    : "group-hover:translate-y-[2px]"
+                } text-blue-400 transition-transform duration-300`}
+              />
+            </button>
           </SectionContainer>
+
+          {isSectionOpen("client") && (
+            <div className="overflow-x-hidden transition-all duration-500 opacity-100 animate-dropIn">
+              {clientSection}
+            </div>
+          )}
 
           <SectionContainer
             title="Links API Layer"
@@ -108,24 +192,26 @@ export default function HowSection() {
             iconBgColor="bg-purple-500"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-              <FeatureCardA
-                title="Unified Communication"
-                titleColor="text-purple-400"
+              <InfoCard
+                title={
+                  <span className="text-purple-400">Unified Communication</span>
+                }
                 description="Imported as a node module into both the app's UI and backend, Links provides a consistent interface for listening, fetching, or sending data between the server and the app's components, abstracting away the complexity of network communication."
               />
-              <FeatureCardA
-                title="Type Safety"
-                titleColor="text-purple-400"
+              <InfoCard
+                title={<span className="text-purple-400">Type Safety</span>}
                 description="The API is fully typed using TypeScript, providing autocomplete suggestions, compile-time error checking, and documentation directly in the development environment, reducing bugs and improving developer productivity."
               />
-              <FeatureCardA
-                title="Component Integration"
-                titleColor="text-purple-400"
+              <InfoCard
+                title={
+                  <span className="text-purple-400">Component Integration</span>
+                }
                 description="Links simplifies the process of adding tasks, settings, mappings, keys, buttons, icons, and other UI elements that need to interact with the backend. Developers can define these components declaratively and Links handles the communication automatically."
               />
-              <FeatureCardA
-                title="State Synchronization"
-                titleColor="text-purple-400"
+              <InfoCard
+                title={
+                  <span className="text-purple-400">State Synchronization</span>
+                }
                 description="The system ensures that state changes are properly synchronized between the frontend and backend, maintaining consistency across the entire application even when multiple clients are connected."
               />
             </div>
@@ -138,24 +224,26 @@ export default function HowSection() {
             iconBgColor="bg-yellow-500"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-              <FeatureCardA
-                title="Dual Architecture"
-                titleColor="text-yellow-400"
+              <InfoCard
+                title={
+                  <span className="text-yellow-400">Dual Architecture</span>
+                }
                 description="Each app contains both UI and backend logic. The UI is essentially a web page with all the flexibility that web technologies offer, while the backend runs on a dedicated thread within the DeskThing server, providing access to system resources and persistent storage."
               />
-              <FeatureCardA
-                title="Backend Capabilities"
-                titleColor="text-yellow-400"
+              <InfoCard
+                title={
+                  <span className="text-yellow-400">Backend Capabilities</span>
+                }
                 description="The app backend has access to user-configurable settings, guided setup tasks, triggerable actions, and system APIs. It can perform operations that require elevated permissions or system access while maintaining security through the DeskThing sandbox."
               />
-              <FeatureCardA
-                title="Development Tools"
-                titleColor="text-yellow-400"
+              <InfoCard
+                title={
+                  <span className="text-yellow-400">Development Tools</span>
+                }
                 description="Apps have access to a CLI during development that simplifies the build process, enables emulating the DeskThing environment for testing, and allows sending sample settings or data to the backend for debugging purposes without requiring a full deployment."
               />
-              <FeatureCardA
-                title="Distribution"
-                titleColor="text-yellow-400"
+              <InfoCard
+                title={<span className="text-yellow-400">Distribution</span>}
                 description="Once developed, apps can be packaged and distributed through the DeskThing app marketplace or shared directly as installation files. The DeskThing server handles installation, dependency resolution, and updates automatically."
               />
             </div>
@@ -188,51 +276,60 @@ export default function HowSection() {
         </div>
 
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-neutral-800 p-4 rounded-lg">
-            <h3 className="text-lg font-semibold mb-3 text-blue-400 flex items-center">
-              <Network className="w-5 h-5 mr-2" />
-              Data Flow Process
-            </h3>
-            <ol className="list-decimal pl-5 space-y-2">
-              <li>Client connects to server via local network</li>
-              <li>Server authenticates client and sends available apps</li>
-              <li>Client requests specific app data</li>
-              <li>
-                Server processes request, fetches data from relevant sources
-              </li>
-              <li>Data is sent back to client for rendering</li>
-              <li>Real-time updates are pushed via WebSocket connection</li>
-            </ol>
-          </div>
-
-          <div className="bg-neutral-800 p-4 rounded-lg">
-            <h3 className="text-lg font-semibold mb-3 text-purple-400 flex items-center">
-              <Code className="w-5 h-5 mr-2" />
-              Technology Stack
-            </h3>
-            <ul className="list-disc pl-5 space-y-2">
-              <li>
-                <span className="font-semibold">Server:</span> Node.js,
-                Electron, Express.js
-              </li>
-              <li>
-                <span className="font-semibold">Client:</span> React, Vite,
-                Tailwind CSS
-              </li>
-              <li>
-                <span className="font-semibold">Communication:</span>{" "}
-                WebSockets, REST APIs
-              </li>
-              <li>
-                <span className="font-semibold">Development:</span> TypeScript
-                for type safety
-              </li>
-              <li>
-                <span className="font-semibold">Packaging:</span> Custom app
-                bundling system
-              </li>
-            </ul>
-          </div>
+          <FeatureCard
+            icon={<Network className="w-5 h-5 text-blue-400" />}
+            title={<span className="text-blue-400">Data Flow Process</span>}
+            description={
+              <ol className="mt-4 list-decimal list-inside space-y-2 text-neutral-300">
+                <li className="pl-2">
+                  Client connects to server via local network
+                </li>
+                <li className="pl-2">
+                  Server authenticates client and sends available apps
+                </li>
+                <li className="pl-2">Client requests specific app data</li>
+                <li className="pl-2">
+                  Server processes request, fetches data from relevant sources
+                </li>
+                <li className="pl-2">
+                  Data is sent back to client for rendering
+                </li>
+                <li className="pl-2">
+                  Real-time updates are pushed via WebSocket connection
+                </li>
+              </ol>
+            }
+          />
+          <FeatureCard
+            icon={<Code className="w-5 h-5 text-green-400" />}
+            title={<span className="text-green-400">Technology Stack</span>}
+            description={
+              <ul className="mt-4 list-disc list-inside space-y-2 text-neutral-300">
+                <li className="pl-2">
+                  <span className="font-semibold text-white">Server:</span>{" "}
+                  Node.js, Electron, Express.js
+                </li>
+                <li className="pl-2">
+                  <span className="font-semibold text-white">Client:</span>{" "}
+                  React, Vite, Tailwind CSS
+                </li>
+                <li className="pl-2">
+                  <span className="font-semibold text-white">
+                    Communication:
+                  </span>{" "}
+                  WebSockets, REST APIs
+                </li>
+                <li className="pl-2">
+                  <span className="font-semibold text-white">Development:</span>{" "}
+                  TypeScript for type safety
+                </li>
+                <li className="pl-2">
+                  <span className="font-semibold text-white">Packaging:</span>{" "}
+                  Custom app bundling system
+                </li>
+              </ul>
+            }
+          />{" "}
         </div>
 
         <div className="mt-8">
@@ -322,19 +419,17 @@ export default function HowSection() {
         </div>
 
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <FeatureCardC
-            icon={<Shield size={36} />}
-            iconColor="text-green-400"
+          <InfoComponent
+            icon={<Shield className="text-green-400" size={36} />}
             title="Security First"
             description="DeskThing operates exclusively on your local network, minimizing security risks associated with cloud-based solutions. All communication between the server and clients is handled within your network, ensuring that sensitive information remains private. The app validation process also includes security checks to prevent malicious code from being executed."
-            borderColor="border-green-500"
+            className="border-green-500"
           />
-          <FeatureCardC
-            icon={<Cpu size={36} />}
-            iconColor="text-blue-400"
+          <InfoComponent
+            icon={<Cpu className="text-blue-400" size={36} />}
             title="Efficient Resource Management"
             description="The DeskThing server includes a sophisticated resource manager that monitors and optimizes system usage. It allocates resources efficiently among running apps, ensures that background processes don't consume excessive CPU or memory, and implements throttling mechanisms when necessary to maintain overall system performance."
-            borderColor="border-blue-500"
+            className="border-blue-500"
           />
         </div>
         <div className="mt-8">

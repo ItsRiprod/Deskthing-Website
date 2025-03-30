@@ -6,7 +6,7 @@ import { SectionContainer } from "../components/SectionContainer"
 
 export default function AboutSection() {
   return (
-    <div className="p-2 md:p-8 bg-neutral-900 rounded-lg h-full">
+    <div className="p-2 md:p-8 rounded-lg h-full">
       <h2 className="text-3xl font-bold mb-6">About Nathan</h2>
       <div className="space-y-8">
         <div className="flex flex-col md:flex-row md:items-center gap-6">
