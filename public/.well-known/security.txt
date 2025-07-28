@@ -1,0 +1,10 @@
+# Security Policy for DeskThing
+Contact: contact@deskthing.app
+Expires: 2026-01-01T00:00:00.000Z
+Acknowledgments: https://deskthing.app/security-acknowledgments
+Preferred-Languages: en
+Canonical: https://deskthing.app/.well-known/security.txt
+
+# Please report security vulnerabilities responsibly
+# Include detailed steps to reproduce the issue
+# Allow reasonable time for us to address the vulnerability before public disclosure

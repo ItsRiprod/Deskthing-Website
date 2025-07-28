@@ -48,7 +48,7 @@ const Footer: FC = () => {
 
     return (
         <footer className="flex flex-col sm:flex-row justify-between gap-2 sm:items-center py-3 px-6 border-t border-neutral-800 bg-neutral-950">
-            <p className="text-xs text-neutral-300">©2024 DeskThing Contributors</p>
+            <p className="text-xs text-neutral-300">©2025 DeskThing</p>
             <div className="flex flex-row gap-2 flex-wrap w-full sm:w-auto">
                 <IconButton to={links.github} icon={<IconGithub />} target="_blank"/>
                 <IconButton to={links.trello} icon={<IconTrello />} target="_blank"/>

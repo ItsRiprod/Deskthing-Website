@@ -1,5 +1,8 @@
+import { GithubRelease, GithubRepository } from "../types/release";
+import { convertToApiUrl } from "./fetchUtils/fetchUtils";
+
 // Repos to pull for Community Apps
-const repos: string[] = [
+const defaultRepos: string[] = [
   "RandomDebugGuy/DeskThing-GMP",
   "dakota-kallas/DeskThing-GitHub",
   "grahamplace/pomodoro-thing",
@@ -22,9 +25,9 @@ interface ReleaseData {
   repoUrl: string;
 }
 
-export async function fetchCommunityReleasesFromRepos(): Promise<(ReleaseData | null)[]> {
+export async function fetchCommunityReleasesFromRepos(repos: string[] = defaultRepos): Promise<(ReleaseData)[]> {
   const fetchRepoData = async (repo: string): Promise<ReleaseData | null> => {
-    const repoApiUrl: string = `https://api.github.com/repos/${repo}`;
+    const repoApiUrl: string = convertToApiUrl(repo)
     const releasesApiUrl: string = `${repoApiUrl}/releases`;
 
     try {
@@ -38,8 +41,8 @@ export async function fetchCommunityReleasesFromRepos(): Promise<(ReleaseData | 
         return null;
       }
 
-      const repoData: any = await repoResponse.json();
-      const { description, html_url, owner } = repoData;
+      const repoData: GithubRepository = await repoResponse.json();
+      const { description, html_url, owner, name } = repoData;
 
       const releaseResponse: Response = await fetch(releasesApiUrl, {
         headers: { Accept: "application/vnd.github+json" },
@@ -51,17 +54,17 @@ export async function fetchCommunityReleasesFromRepos(): Promise<(ReleaseData | 
         return null;
       }
 
-      const releases: any[] = await releaseResponse.json();
+      const releases: GithubRelease[] = await releaseResponse.json();
       if (releases.length === 0) {
         console.warn(`No releases found for ${repo}`);
         return null;
       }
 
-      const latestRelease: any = releases[0];
+      const latestRelease = releases[0];
       const { html_url: latestReleaseUrl, published_at: date, author } = latestRelease;
 
       return {
-        appName: repo.split("/")[1], // Extract the repository name as app name
+        appName: name, // Extract the repository name as app name
         authorName: author?.login || owner?.login || "Unknown", 
         description: description || "No description available.",
         date: new Date(date).toLocaleDateString(),
@@ -76,5 +79,5 @@ export async function fetchCommunityReleasesFromRepos(): Promise<(ReleaseData | 
 
   const releaseData: (ReleaseData | null)[] = await Promise.all(repos.map(fetchRepoData));
 
-  return releaseData.filter(Boolean);
+  return releaseData.filter(Boolean) as ReleaseData[];
 }

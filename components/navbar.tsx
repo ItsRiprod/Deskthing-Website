@@ -23,12 +23,12 @@ const NavLink: React.FC<NavLinkProps> = ({ href, label, target = "_self" }) => {
 
 export default function Navbar(): JSX.Element {
     //NAV ITEMS
-    const navItems: { href: string; label: string; }[] = [
+    const navItems: { href: string; label: string; target?: string }[] = [
         { href: "./", label: "Home" },
         { href: "./about", label: "About" },
-        { href: "./releases", label: "Releases" },
+        { href: "./releases", label: "Downloads" },
         { href: "./apps", label: "Apps" },
-        { href: "https://wiki.thinglabs.tech", label: "Wiki", target: "_blank"},
+        { href: "https://wiki.thinglabs.tech/thinglabs-apps/deskthing/introduction/", label: "Wiki", target: "_blank"},
         // { href: "./supporters", label: "Supporters"},
         
     ];

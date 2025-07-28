@@ -3,3 +3,5 @@ node_modules
 eslint
 eslint.config.mjs
 .vscode
+/deskthingsite/build
+deskthingsite/.env

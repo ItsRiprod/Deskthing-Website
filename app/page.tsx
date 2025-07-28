@@ -17,12 +17,12 @@ import {
 } from "../components/assets/icons";
 import {
   fetchCommunityReleasesFromRepos,
-  fetchOfficialAppsData,
   fetchTotalDownloadsFromRepo,
   fetchTotalDownloadsFromRepos,
   fetchServerReleases,
   fetchDiscordMemberCount,
 } from "../services";
+import { fetchAppReleaseFile } from '../services/fetchUtils/appFetchUtils';
 
 const HomePage: FC = async () => {
   const btnLinks: { [key: string]: string } = {
@@ -39,30 +39,30 @@ const HomePage: FC = async () => {
     getStarted: "https://wiki.thinglabs.tech/first-steps/flashing/",
   };
 
-  const serverReleases: any[] = await fetchServerReleases();
-  const latestRelease: any = serverReleases[0];
-  const downloadUrls: string[] = latestRelease.platforms;
+  const serverReleases = await fetchServerReleases();
+  const latestRelease = serverReleases[0];
+  const downloadUrls = latestRelease.platforms;
 
-  const statRepos: string[] = ["itsriprod/deskthing", "itsriprod/deskthing-apps"];
+  const statRepos = ["itsriprod/deskthing", "itsriprod/deskthing-apps"];
 
-  const downloadData: { repo: string; totalDownloads: number }[] = await Promise.all(
+  const downloadData = await Promise.all(
     statRepos.map(async (repo: string) => {
-      const { repo: repoName, totalDownloads }: { repo: string; totalDownloads: number } = await fetchTotalDownloadsFromRepo(repo);
+      const { repo: repoName, totalDownloads } = await fetchTotalDownloadsFromRepo(repo);
       return { repo: repoName, totalDownloads }; 
     })
   );
 
   const discordMembers: number = await fetchDiscordMemberCount();
 
-  const releases: any[] = await fetchCommunityReleasesFromRepos();
-  const { latestApps, latestReleaseUrl, repoUrl, releaseDate }: { latestApps: any[]; latestReleaseUrl: string; repoUrl: string; releaseDate: string } = await fetchOfficialAppsData();
+  const appReleaseFile = await fetchAppReleaseFile();
+  const releases = await fetchCommunityReleasesFromRepos();
 
-  if (!latestApps || !releases) {
+  if (!appReleaseFile || !releases) {
     return <div>Error loading apps</div>;
   }
 
-  const officialAppsToDisplay: any[] = latestApps.slice(0, 3);
-  const communityAppsToDisplay: any[] = releases.slice(0, 3);
+  const officialAppsToDisplay = appReleaseFile.releases.slice(0, 3);
+  const communityAppsToDisplay = releases.slice(0, 3);
 
   const deskthingDownloads: number = downloadData.find(item => item.repo === "itsriprod/deskthing")?.totalDownloads || 0;
   const deskthingAppsDownloads: number = downloadData.find(item => item.repo === "itsriprod/deskthing-apps")?.totalDownloads || 0;
@@ -190,13 +190,10 @@ const HomePage: FC = async () => {
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-                {officialAppsToDisplay.map((app: any, index: number) => (
+                {officialAppsToDisplay.map((app, index: number) => (
                   <OfficialAppCard
                     key={index}
-                    appName={app.appName}
-                    latestReleaseUrl={latestReleaseUrl}
-                    repoUrl={repoUrl}
-                    appVersion={app.appVersion}
+                    app={app}
                   />
                 ))}
                 {communityAppsToDisplay.map((release: any, index: number) => (

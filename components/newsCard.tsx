@@ -8,7 +8,7 @@ interface NewsCardProps {
   description: string;
   imgUrl: string;
   imgCredit: string;
-  featured: boolean;
+  featured?: boolean;
 }
 
 export const NewsCard: FC<NewsCardProps> = ({ source, sourceUrl, title, description, imgUrl, imgCredit }) => {

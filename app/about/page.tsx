@@ -1,6 +1,8 @@
+import { BtnArrow } from "../../components/buttons";
+
 export const metadata = {
-  title: 'DeskThing | About',
-}
+  title: "DeskThing | About",
+};
 
 export default function AboutPage() {
   return (
@@ -38,15 +40,26 @@ export default function AboutPage() {
           <section>
             <h2>What We Plan to Do About It</h2>
             <p className="characterLimit">
-              Spotify officially launched the CarThing in 2022. The device was
-              very polarizing to its customers and ultimately flopped in the
-              eyes of Spotify. As a result, Spotify has decided not only to
-              discontinue the product but also to discontinue support for the
-              device, leaving it as e-waste. Spotify has actually encouraged
-              users to throw away their current devices. December 9, 2024, marks
-              the official end of the very short-lived product. However, many of
-              its users have found ways to repurpose the CarThing to increase
-              productivity.
+              Summer of 2024, when the announcement was made, I made the choice
+              to bring functionality back to the Car Thing. It started as a
+              simple TODO List Project (called "TODOThing") but quickly grew to
+              be far more capable. Our newfound goal is to provide new
+              functionality to these devices Spotify deemed was use for little
+              more than being thrown away. If you want to read more on the
+              journey it took to get here, you can{" "}
+              <a
+                className="text-emerald-500 hover:underline"
+                href="./showcase/when"
+                target="_self"
+              >
+                view that right here.
+              </a>
+            </p>
+            <p className="characterLimit">
+              DeskThing has come a long way since then. We have plans to explore
+              new horizons, exploring the world that having a small device on
+              your computer can offer in terms of productivity and
+              personalization.
             </p>
             <div className="w-full bg-white rounded-2xl h-64 md:h-[500px] overflow-clip mt-4 border border-neutral-700">
               <img
@@ -59,6 +72,15 @@ export default function AboutPage() {
           <section>
             <h2>What DeskThing Strives to Become</h2>
             <p className="characterLimit">
+              DeskThing is a project that aims to provide a platform for users
+              to create their own applications and tools for their Car Thing. We
+              want to make it easy for anyone to build their own apps, whether
+              they are experienced developers or just starting out. We believe
+              that the Car Thing has the potential to be a powerful tool for
+              productivity and creativity, and we want to help users unlock that
+              potential.
+            </p>
+            <p className="characterLimit">
               What started as a hobby project has turned into a passion project.
               We hope to continue to improve the DeskThing and make it a staple
               in the lives of our users. We hope to continue to add new features
@@ -66,6 +88,7 @@ export default function AboutPage() {
               product for everyone. Take back the Car Thing.
             </p>
             <br />
+            <p>We strive to always be:</p>
             <ul className="font-light">
               <li>- 100% Open Source</li>
               <li>- 100% Expandable</li>
@@ -74,25 +97,19 @@ export default function AboutPage() {
           </section>
           <section className="p-6 bg-neutral-900 rounded-2xl">
             <p>
-              Okay, fancy company talk aside.
-              <br /><br />
-              I want this to act as a sign of encouragement. You've made it this
-              far, why not shoot for the moon? And once you hit that, aim for
-              the stars. You'll never know what you're capable of unless you
-              try. You will fail. We all do. But you can always try again.
-              <br /><br />
-              Realistically I doubt anyone is going to find this. But if you
-              have somehow stumbled upon my little project on this corner of the
-              internet. I want to welcome you here. I'm really trying my hardest
-              to make the DeskThing an easy entrypoint for beginners to mess
-              around with real tools to build their own deskside applications.
-              If you're at all interested or want to support this project, there
-              are links on the home page of this site.
-              <br /><br />
-              Thank you,
-              <br /><br />
-              Riprod
+              If you would like to learn more about DeskThing, feel free to
+              reach out at{" "}
+              <a
+                href="mailto:contact@deskthing.app"
+                className="text-emerald-500 hover:underline"
+              >
+                contact@deskthing.app
+              </a>{" "}
+              or you can
             </p>
+            <div className="mt-2">
+              <BtnArrow to="./showcase/who" label="Go to the showcase" />
+            </div>
           </section>
         </div>
       </div>
