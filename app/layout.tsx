@@ -31,7 +31,7 @@ export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
 
         {/* Security Headers */}
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-        <meta httpEquiv="X-Frame-Options" content="DENY" />
+        {/*<meta httpEquiv="X-Frame-Options" content="DENY" />*/}
         <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
         <meta
           httpEquiv="Referrer-Policy"
@@ -43,10 +43,10 @@ export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
         />
 
         {/* Content Security Policy - adjust as needed for your specific requirements */}
-        <meta
+        {/*<meta
           httpEquiv="Content-Security-Policy"
           content="default-src 'self'; script-src 'self' 'unsafe-inline' vercel.live *.vercel-analytics.com *.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' *.vercel-analytics.com *.speed-insights.vercel.app;"
-        />
+        />*/}
 
         {/* Trust and SEO related */}
         <meta name="robots" content="index, follow" />
