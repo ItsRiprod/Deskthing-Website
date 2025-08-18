@@ -129,7 +129,7 @@ export default function ReleasesDropdown({ pastReleases }: { pastReleases: PastR
               willChange: "transform, opacity",
             }}
           >
-            <ul className="py-1 max-h-64 overflow-auto divide-y divide-neutral-800">
+            <ul className="max-h-64 overflow-auto divide-y divide-neutral-800">
               {hasItems ? (
                 pastReleases.map((r, i) => {
                   const label = r.name || r.tag || `Release ${i + 1}`;
