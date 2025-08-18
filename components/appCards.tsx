@@ -159,11 +159,11 @@ export const AppCard: FC<AppCardProps> = ({
 }) => {
   return (
     <div
-      className="p-6 border border-neutral-800 rounded-lg flex flex-col justify-between gap-2
+      className="w-full max-w-full p-6 border border-neutral-800 rounded-lg flex flex-col justify-between gap-2
     bg-neutral-925 hoverDropShadow transition ease-in-out duration-200"
     >
       <div className="flex flex-col gap-2">
-        <h5 className="text-left text-2xl w-full font-medium text-green-600">
+        <h5 className="text-left text-2xl w-full font-medium text-green-600 wrap-anywhere" style={{overflowWrap: 'anywhere'}}>
           {appName}
         </h5>
         <p className="text-left w-full font-mono text-neutral-400 text-sm">
