@@ -54,8 +54,8 @@ export default function AboutPage() {
               >
                 view that right here.
               </a>
-            </p>
-            <p className="characterLimit">
+            <br />
+            <br />
               DeskThing has come a long way since then. We have plans to explore
               new horizons, exploring the world that having a small device on
               your computer can offer in terms of productivity and
@@ -79,8 +79,8 @@ export default function AboutPage() {
               that the Car Thing has the potential to be a powerful tool for
               productivity and creativity, and we want to help users unlock that
               potential.
-            </p>
-            <p className="characterLimit">
+              <br />
+              <br />
               What started as a hobby project has turned into a passion project.
               We hope to continue to improve the DeskThing and make it a staple
               in the lives of our users. We hope to continue to add new features
