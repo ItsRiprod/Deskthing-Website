@@ -39,10 +39,6 @@ const HomePage: FC = async () => {
     getStarted: "https://wiki.thinglabs.tech/first-steps/flashing/",
   };
 
-  const serverReleases = await fetchServerReleases();
-  const latestRelease = serverReleases[0];
-  const downloadUrls = latestRelease.platforms;
-
   const statRepos = ["itsriprod/deskthing", "itsriprod/deskthing-apps"];
 
   const downloadData = await Promise.all(
@@ -253,8 +249,7 @@ const HomePage: FC = async () => {
             </section>
           </div>
         </div>
-
-        <Sidebar downloadUrls={downloadUrls} />
+        <Sidebar />
       </div>
     </>
   );

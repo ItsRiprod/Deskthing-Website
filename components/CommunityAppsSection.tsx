@@ -32,7 +32,7 @@ export async function CommunityAppsSection() {
           <li>Navigate to the apps .zip and open.</li>
         </ol>
       </div>
-      <div className="grid rid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid rid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
         {releases.length === 0 && (
           <div className="p-6 border border-neutral-800 rounded-lg flex flex-col gap-2 bg-neutral-925">
             <h4 className="text-left w-full font-medium">No community apps found.</h4>
