@@ -9,7 +9,7 @@
 }
 
 .wideContainer {
-    width: 1596px;
+    max-width: 1596px;
     margin-top: 3.75rem;
     margin-bottom: 6rem;
 }
