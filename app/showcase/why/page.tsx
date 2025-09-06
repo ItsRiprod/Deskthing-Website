@@ -331,7 +331,7 @@ export default function WhySection() {
                   Download Now
                 </a>
                 <a
-                  href="https://wiki.thinglabs.tech"
+                  href="https://thinglabsoss.github.io/wiki-astro/"
                   className="px-4 py-2 bg-neutral-700 hover:bg-neutral-600 rounded-lg font-medium transition-colors"
                 >
                   Read Documentation

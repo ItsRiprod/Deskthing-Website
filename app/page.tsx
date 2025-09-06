@@ -35,8 +35,8 @@ const HomePage: FC = async () => {
     bluesky: "https://bsky.app/profile/deskthing.app",
     twitter: "https://x.com/TheDeskThing",
     githubSponsor: "https://github.com/sponsors/ItsRiprod?o=esb",
-    wiki: "https://wiki.thinglabs.tech/",
-    getStarted: "https://wiki.thinglabs.tech/first-steps/flashing/",
+    wiki: "https://thinglabsoss.github.io/wiki-astro/",
+    getStarted: "https://thinglabsoss.github.io/wiki-astro/first-steps/flashing/",
   };
 
   const statRepos = ["itsriprod/deskthing", "itsriprod/deskthing-apps"];
