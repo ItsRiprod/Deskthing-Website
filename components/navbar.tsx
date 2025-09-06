@@ -28,7 +28,7 @@ export default function Navbar(): JSX.Element {
         { href: "./about", label: "About" },
         { href: "./releases", label: "Downloads" },
         { href: "./apps", label: "Apps" },
-        { href: "https://thinglabsoss.github.io/wiki-astro/thinglabs-apps/deskthing/introduction/", label: "Wiki", target: "_blank"},
+        { href: "https://carthing.wiki/thinglabs-apps/deskthing/introduction/", label: "Wiki", target: "_blank"},
         // { href: "./supporters", label: "Supporters"},
         
     ];
