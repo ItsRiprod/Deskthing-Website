@@ -47,15 +47,7 @@ export default function AboutPage() {
                 simple TODO List Project (called "TODOThing") but quickly grew to
                 be far more capable. Our newfound goal is to provide new
                 functionality to these devices Spotify deemed was use for little
-                more than being thrown away. If you want to read more on the
-                journey it took to get here, you can{" "}
-                <a
-                  className="text-emerald-500 hover:underline"
-                  href="./showcase/when"
-                  target="_self"
-                >
-                  view that right here.
-                </a>
+                more than being thrown away.
               <br />
               <br />
                 DeskThing has come a long way since then. We have plans to explore
@@ -109,9 +101,6 @@ export default function AboutPage() {
                 </a>{" "}
                 or you can
               </p>
-              <div className="mt-2">
-                <BtnArrow to="./showcase/who" label="Go to the showcase" />
-              </div>
             </section>
           </div>
         </div>
